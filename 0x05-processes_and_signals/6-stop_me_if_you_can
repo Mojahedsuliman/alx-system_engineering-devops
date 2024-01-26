@@ -9,7 +9,8 @@ if [ -n "$pid" ]; then
     # Send a SIGTERM signal to gracefully terminate the process
     echo "Terminating 4-to_infinity_and_beyond process with PID $pid"
     kill -s SIGTERM "$pid"
-    sleep 2  # Optional: wait for the process to terminate gracefully
+    sleep 2 
+    # Optional: wait for the process to terminate gracefully
 else
     echo "No 4-to_infinity_and_beyond process found"
 fi

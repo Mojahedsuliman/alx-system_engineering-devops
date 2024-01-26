@@ -1,15 +1,7 @@
 #!/usr/bin/env bash
+#Display beyond infinity beyond
 
-# Set a flag for termination
-terminate=false
-
-# Trap the SIGUSR1 signal to stop the infinite loop
-trap 'terminate=true' SIGUSR1
-
-# Display "To infinity and beyond" indefinitely
-while [ "$terminate" = false ]; do
-    echo "To infinity and beyond"
-    sleep 2
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
 done
-
-echo "Terminated"
