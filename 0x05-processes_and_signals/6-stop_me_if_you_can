@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Find the process ID of the 4-to_infinity_and_beyond script
-pid=$(pgrep -f "4-to_infinity_and_beyond")
-
-# Check if the process ID was found
-if [ -n "$pid" ]; then
-    # Send the SIGUSR1 signal to terminate the process
-    kill -SIGUSR1 $pid
+# Check if the named pipe exists
+fifo="/tmp/stop_fifo"
+if [ -p "$fifo" ]; then
+    # Send a message to the named pipe to terminate the process
+    echo "Stop" > "$fifo"
 else
-    echo "No matching process found"
+    echo "Named pipe not found"
 fi
