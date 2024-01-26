@@ -8,4 +8,5 @@ process_pid=$(pgrep -f "7-highlander")
 if [ -n "$process_pid" ]; then
   # Send SIGKILL signal to forcefully terminate the process
   kill -9 "$process_pid"
+  echo "Killed"
 fi
