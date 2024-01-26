@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Create a named pipe
 fifo="/tmp/stop_fifo"

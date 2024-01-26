@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if the named pipe exists
 fifo="/tmp/stop_fifo"
