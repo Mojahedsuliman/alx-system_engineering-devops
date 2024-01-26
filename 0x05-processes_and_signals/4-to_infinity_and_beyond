@@ -1,7 +1,10 @@
-#!/usr/bin/env bash
-# This script displays "To infinity and beyond" indefinitely with a sleep of 2 seconds.
+#!/bin/bash
 
-while true; do
-  echo "To infinity and beyond"
-  sleep 2
+# Trap the SIGUSR1 signal to stop the infinite loop
+trap 'echo "Terminated"; exit' SIGUSR1
+
+# Display "To infinity and beyond" indefinitely
+while :; do
+    echo "To infinity and beyond"
+    sleep 2
 done

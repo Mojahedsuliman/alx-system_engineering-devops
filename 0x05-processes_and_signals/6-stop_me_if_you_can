@@ -5,10 +5,8 @@ pid=$(pgrep -f "4-to_infinity_and_beyond")
 
 # Check if the process ID was found
 if [ -n "$pid" ]; then
-    # Terminate the process using pkill
-    pkill -P $pid
-
-    echo "Terminated 4-to_infinity_and_beyond process"
+    # Send the SIGUSR1 signal to terminate the process
+    kill -SIGUSR1 $pid
 else
     echo "No matching process found"
 fi
