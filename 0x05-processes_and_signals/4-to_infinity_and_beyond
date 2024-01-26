@@ -1,23 +1,10 @@
 #!/usr/bin/env bash
 
-# Create a named pipe
-fifo="/tmp/stop_fifo"
-mkfifo "$fifo"
-
 # Set a flag for termination
 terminate=false
 
-# Function to handle termination
-terminate_process() {
-    terminate=true
-    rm -f "$fifo"
-}
-
-# Trap the EXIT signal to ensure the named pipe is removed
-trap 'terminate_process' EXIT
-
 # Trap the SIGUSR1 signal to stop the infinite loop
-trap 'terminate_process' SIGUSR1
+trap 'terminate=true' SIGUSR1
 
 # Display "To infinity and beyond" indefinitely
 while [ "$terminate" = false ]; do
