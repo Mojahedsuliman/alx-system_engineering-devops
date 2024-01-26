@@ -8,6 +8,4 @@ process_pid=$(pgrep -f "4-to_infinity_and_beyond")
 if [ -n "$process_pid" ]; then
   # Send SIGINT signal to the process using Ctrl+C (interrupt)
   kill -2 "$process_pid"
-else
-  echo "4-to_infinity_and_beyond process is not running."
 fi
