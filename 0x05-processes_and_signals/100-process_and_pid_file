@@ -1,17 +1,37 @@
-#!/bin/bash
-# This script demonstrates signal handling, creates a PID file, and displays messages.
+#!/usr/bin/env bash
+# Description: Creates PID file, displays messages, and handles signals.
 
-terminator() {
-  rm /var/run/myscript.pid
+PID_FILE="/var/run/myscript.pid"
+
+# Function to clean up and exit
+cleanup() {
+  rm -f "$PID_FILE"
+  echo "Terminating..."
   exit
 }
 
-echo "$$" > /var/run/myscript.pid
+# Function to handle SIGTERM signal
+handle_sigterm() {
+  echo "I hate the kill command"
+  cleanup
+}
 
-while true: do
+# Function to handle SIGINT signal
+handle_sigint() {
+  echo "Y U no love me?!"
+  cleanup
+}
+
+# Set traps for signals
+trap 'handle_sigterm' SIGTERM
+trap 'handle_sigint' SIGINT
+trap 'cleanup' SIGQUIT
+
+# Create PID file
+echo "$$" > "$PID_FILE"
+
+# Display messages indefinitely
+while true; do
   echo "To infinity and beyond"
   sleep 2
-  trap 'echo "Y U no love me?!"' SIGINT
-  trap 'echo "I hate the kill command" && terminator' SIGTERM
-  trap 'terminator' SIGQUIT
 done
