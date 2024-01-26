@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
+# This script stops the 4-to_infinity_and_beyond process without using kill or killall
 
-# Check if the named pipe exists
-fifo="/tmp/stop_fifo"
-if [ -p "$fifo" ]; then
-    # Send a message to the named pipe to terminate the process
-    echo "Stop" > "$fifo"
+# Get the process ID of 4-to_infinity_and_beyond
+pid=$(pgrep -f "4-to_infinity_and_beyond")
+
+# Check if the process ID exists
+if [ -n "$pid" ]; then
+    # Send a SIGTERM signal to gracefully terminate the process
+    echo "Terminating 4-to_infinity_and_beyond process with PID $pid"
+    kill -s SIGTERM "$pid"
+    sleep 2  # Optional: wait for the process to terminate gracefully
 else
-    echo "Named pipe not found"
+    echo "No 4-to_infinity_and_beyond process found"
 fi
