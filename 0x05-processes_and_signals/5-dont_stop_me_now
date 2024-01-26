@@ -6,7 +6,6 @@ process_pid=$(pgrep -f "4-to_infinity_and_beyond")
 
 # Check if the process is running
 if [ -n "$process_pid" ]; then
-  echo "Stopping 4-to_infinity_and_beyond process..."
   # Terminate the process using kill
   kill "$process_pid"
 else
