@@ -1,40 +1,17 @@
 #!/bin/bash
 # This script demonstrates signal handling, creates a PID file, and displays messages.
 
-pid_file="/var/run/myscript.pid"
-
-# Function to clean up and exit
-cleanup_and_exit() {
-  echo "Cleaning up and terminating..."
-  rm -f "$pid_file"
+terminator() {
+  rm /var/run/myscript.pid
   exit
 }
 
-# Function to handle SIGTERM signal
-sigterm_handler() {
-  echo "I hate the kill command"
-  cleanup_and_exit
-}
+echo "$$" > /var/run/myscript.pid
 
-# Function to handle SIGINT signal
-sigint_handler() {
-  echo "Y U no love me?!"
-}
-
-# Function to handle SIGQUIT signal
-sigquit_handler() {
-  echo "Received SIGQUIT, cleaning up and terminating..."
-  cleanup_and_exit
-}
-
-# Trap signals
-trap 'sigterm_handler' SIGTERM
-trap 'sigint_handler' SIGINT
-trap 'sigquit_handler' SIGQUIT
-
-# Display messages and create PID file
-echo "To infinity and beyond"
-while true; do
+while true: do
   echo "To infinity and beyond"
   sleep 2
+  trap 'echo "Y U no love me?!"' SIGINT
+  trap 'echo "I hate the kill command" && terminator' SIGTERM
+  trap 'terminator' SIGQUIT
 done
