@@ -2,5 +2,4 @@
 # Ruby script that accepts one argument and pass it to a regular expression matching method
 
 
-argument = ARGV[0].scan(/^h.n$/).join
-puts argument
+puts ARGV[0].scan(/^h.n$/).join

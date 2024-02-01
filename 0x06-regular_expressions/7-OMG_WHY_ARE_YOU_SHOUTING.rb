@@ -2,5 +2,4 @@
 # The regular expression must be only matching: capital letters
 
 
-argument = ARGV[0].scan(/[A-Z]+/).join
-puts argument
+puts ARGV[0].scan(/[A-Z]*/).join
