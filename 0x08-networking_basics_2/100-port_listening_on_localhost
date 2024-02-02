@@ -2,4 +2,4 @@
 # Start listening on the specified port
 
 PORT=98
-nc -l -p $PORT
+nc -l $PORT
