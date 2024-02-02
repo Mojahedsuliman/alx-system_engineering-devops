@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
-if [ $# -eq 0 ]; then
-  echo "Usage: $0 {IP_ADDRESS}"
-  exit 1
+# a Bash script that pings an IP address passed as an argument.
+# Accepts a string as an argument
+# Displays Usage: 5-is_the_host_on_the_network {IP_ADDRESS} if no argument passed
+# Ping the IP 5 times
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 {IP_ADDRESS}"
+    exit 1
 fi
-IP_ADDRESS=$1
-ping -c 5 $IP_ADDRESS
+ip_address=$1
+ping -c 5 $ip_address
