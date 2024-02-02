@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
 # Start listening on the specified port
-PORT=98
 
+PORT=98
 nc -l -p $PORT
