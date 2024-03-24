@@ -2,7 +2,6 @@
 
 $ssh_config_file = '/etc/ssh/ssh_config'
 
-# Ensure SSH client configuration file exists
 file { $ssh_config_file:
   ensure => file,
 }
