@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# installing nginx Web servers are the piece of software generating and serving HTML pages
+
+apt-get update
+apt-get install -y nginx
+echo "Hello World!" > /usr/share/nginx/html/index.html
+kill -HUP $(pgrep -f)
+if ! nc -z localhost 80; then
+	echo "failure"
+fi
+echo "Nginx installed successfully"
