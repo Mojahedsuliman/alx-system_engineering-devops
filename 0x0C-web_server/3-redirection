@@ -1,0 +1,30 @@
+#!/bin/env bash
+
+if ! dpkg -l | grep -q nginx; then
+    apt-get update
+    apt-get install -y nginx
+fi
+
+cat <<EOF > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
+
+kill -HUP $(pgrep -f 'nginx: master process')
+
+echo "Redirection configured"
